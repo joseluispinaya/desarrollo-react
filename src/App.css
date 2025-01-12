@@ -2,7 +2,20 @@
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
+  display: flex;
+  gap: 2rem;
   text-align: center;
+}
+
+.left-section {
+  flex: 2; /* Ocupa espacio proporcional */
+  display: flex;
+  flex-direction: column; /* Organiza los componentes en columna */
+  gap: 1rem; /* Espacio entre Home y Counter */
+}
+
+.right-section {
+  flex: 1; /* Ocupa espacio proporcional */
 }
 
 .logo {
@@ -34,9 +47,10 @@
 }
 
 .card {
-  padding: 2em;
+  padding: 1em;
 }
 
 .read-the-docs {
   color: #888;
+  margin: 0;
 }

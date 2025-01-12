@@ -2,7 +2,7 @@ const Body = () => {
     return (
         <div>
             <div className="card">
-                <h1>Vite + React</h1>
+                <h1 style={{ margin: '10px 0' }}>Vite + React</h1>
 
                 <h2>Diplomado en fullstack</h2>
                 <h3>Mod 7: Curso de React</h3>

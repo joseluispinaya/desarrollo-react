@@ -24,14 +24,15 @@ const Counter = () => {
                 >
                     Decrement
                 </button>
-                <button
+                
+            </div>
+            <button
                     aria-label="Decrement value"
                     onClick={() => dispatch(incrementByAmount(5))}
-                    style={{ marginLeft: '10px' }}
+                    style={{ marginTop: '10px' }}
                 >
                     Increment by Amount
                 </button>
-            </div>
         </div>
     )
 }
