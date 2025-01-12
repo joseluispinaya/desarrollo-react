@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux'
-import { decrement, increment } from '../../store/features/counter/counterSlice.js'
+import { decrement, increment, incrementByAmount } from '../../store/features/counter/counterSlice.js'
 
 const Counter = () => {
     // state.counter.value la palabra counter se declara en store.js
@@ -17,12 +17,19 @@ const Counter = () => {
                 >
                     Increment
                 </button>
-                <span>{count}</span>
+                <span style={{ margin: '0 10px' }}>{count}</span>
                 <button
                     aria-label="Decrement value"
                     onClick={() => dispatch(decrement())}
                 >
                     Decrement
+                </button>
+                <button
+                    aria-label="Decrement value"
+                    onClick={() => dispatch(incrementByAmount(5))}
+                    style={{ marginLeft: '10px' }}
+                >
+                    Increment by Amount
                 </button>
             </div>
         </div>
