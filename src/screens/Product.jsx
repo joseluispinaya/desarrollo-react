@@ -1,5 +1,6 @@
 import React from 'react'
 import FilterableProdTable from '../Components/Product/FilterableProdTable.jsx'
+import { useSelector } from 'react-redux'
 
 const PRODUCTS = [
     { category: "Fruits", price: "$1", stocked: true, name: "Apple" },
@@ -11,10 +12,11 @@ const PRODUCTS = [
 ];
 
 const Product = () => {
+    const dataProduct = useSelector((state) => state.product.dataProduct)
     return (
         <div>
             <h3>Mod 7: Practica 1</h3>
-            <FilterableProdTable products={PRODUCTS} />
+            <FilterableProdTable products={dataProduct} />
         </div>
     );
 }
