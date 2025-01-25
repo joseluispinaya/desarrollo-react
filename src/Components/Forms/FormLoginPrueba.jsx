@@ -1,64 +1,44 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion } from "motion/react"
 import { useSelector, useDispatch } from 'react-redux'
 import { updateFormData } from "../../store/features/form/formSlice.js";
-//import useForm from "../Hooks/useForm.js";
+import useForm from "../Hooks/useForm.js";
 import ModalInfo from "../../Components/Modals/ModalInfo.jsx";
 import ModalError from "../../Components/Modals/ModalError.jsx";
 
-const FormWithMotionAndHook = ({ titleForm }) => {
+const FormWithMotionPrueba = ({ titleForm }) => {
     const dispatch = useDispatch();
-    //const formData = useSelector((state) => state.form.formData);
-    const formDataRedux = useSelector((state) => state.form.formData);
-
-    const [formData, setFormData] = useState({
-        module: formDataRedux.module,
-        username: "",
-        email: "",
-        password: ""
+    const { formData, handleChange } = useForm({
+        module: formDataf.module,
+        username: '',
+        email: '',
+        password: ''
     });
+    const formDataf = useSelector((state) => state.form.formData)
 
     const [showModal, setShowModal] = useState(false);
     const [showModalErr, setShowModalErr] = useState(false);
     const [modalMessage, setModalMessage] = useState("");
     const [showPassword, setShowPassword] = useState(false);
 
-    useEffect(() => {
-        setFormData((prev) => ({
-            ...prev,
-            module: formDataRedux.module,
-            username: formDataRedux.username,
-            email: formDataRedux.email,
-            //password: formDataRedux.password
-            password: ''
-        }));
-    }, [formDataRedux]);
-
-
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setFormData((prev) => ({
-            ...prev,
-            [name]: value
-        }));
-    };
-
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if (formData.password === formDataRedux.password) {
+        if (formData.password === formDataf.password) {
             setModalMessage(`¡Bienvenido, ${formData.username}!`);
             setShowModal(true);
             setShowModalErr(false);
-
             dispatch(updateFormData({ name: "username", value: formData.username }));
             dispatch(updateFormData({ name: "email", value: formData.email }));
-            //console.log('datos del formulario', formDataRedux);
+            //console.log('datos', formDataf);
+            //setErrorMessage("");
         } else {
             setModalMessage("");
             setShowModal(false);
             setShowModalErr(true);
         }
+        //setShowModal(true);
+        //console.log('datos del formulario', formData);
     };
 
     const onCloseModalInfo = () => {
@@ -125,7 +105,7 @@ const FormWithMotionAndHook = ({ titleForm }) => {
                                 type="text"
                                 name="username"
                                 value={formData.username}
-                                onChange={handleInputChange}
+                                onChange={handleChange}
                                 required
                             />
                         </label>
@@ -143,7 +123,7 @@ const FormWithMotionAndHook = ({ titleForm }) => {
                                 type="email"
                                 name="email"
                                 value={formData.email}
-                                onChange={handleInputChange}
+                                onChange={handleChange}
                                 required
                             />
                         </label>
@@ -161,7 +141,7 @@ const FormWithMotionAndHook = ({ titleForm }) => {
                                 type={showPassword ? "text" : "password"}
                                 name="password"
                                 value={formData.password}
-                                onChange={handleInputChange}
+                                onChange={handleChange}
                                 required
                                 style={{ marginRight: "10px" }}
                             />
@@ -193,4 +173,4 @@ const FormWithMotionAndHook = ({ titleForm }) => {
         </motion.div>
     );
 };
-export default FormWithMotionAndHook;
+export default FormWithMotionPrueba;
